@@ -20,9 +20,12 @@ defmodule ThreadWatcher.MixProject do
   def application do
     [
       mod: {ThreadWatcher.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools] ++ extra_applications(Mix.env())
     ]
   end
+
+  # Get which applications to launch based on the environment
+  defp extra_applications(_all), do: [:hackney]
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
@@ -42,7 +45,8 @@ defmodule ThreadWatcher.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:hackney, "~> 1.14"}
     ]
   end
 
