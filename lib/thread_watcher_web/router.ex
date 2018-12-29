@@ -33,11 +33,6 @@ defmodule ThreadWatcherWeb.Router do
 
     get "/", Redirect, to: "/api/v1"
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ThreadWatcherWeb do
-  #   pipe_through :api
-  # end
 end
 
 defmodule ThreadWatcherWeb.Redirect do
