@@ -1,8 +1,6 @@
 defmodule ThreadWatcher.Handlers.Fetcher do
-  @spec fetch(String.t(), String.t()) :: {atom(), String.t() | map()}
-  def fetch(url, error_message \\ "Resource doesn't exist") do
-    headers = get_fetch_headers()
-
+  @spec fetch(String.t(), String.t(), [{binary(), binary()}]) :: {:error, binary()} | {:ok, map()}
+  def fetch(url, error_message \\ "Resource doesn't exist", headers \\ get_fetch_headers()) do
     url
     |> :hackney.get(headers)
     |> handle_response(error_message)
