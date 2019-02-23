@@ -19,6 +19,11 @@ defmodule ThreadWatcherWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/proxy", ThreadWatcherWeb do
+    get "/i/:board/:file", ProxyController, :image
+    get "/thumb/:board/:file", ProxyController, :thumb
+  end
+
   scope "/api/v1", ThreadWatcherWeb do
     pipe_through :api
 
