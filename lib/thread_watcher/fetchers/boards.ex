@@ -1,5 +1,5 @@
 defmodule ThreadWatcher.Fetchers.Boards do
-  alias ThreadWatcher.Handlers.Fetcher
+  alias ThreadWatcher.Fetchers.Fetcher
 
   @spec fetch() :: {:error, String.t()} | {:ok, [map()]}
   def fetch() do

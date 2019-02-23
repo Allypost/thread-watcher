@@ -1,5 +1,5 @@
 defmodule ThreadWatcher.Fetchers.Thread do
-  alias ThreadWatcher.Handlers.Fetcher
+  alias ThreadWatcher.Fetchers.Fetcher
   alias ThreadWatcher.Handlers.PostInfo
 
   @spec fetch(String.t(), number()) :: {:error, String.t()} | {:ok, [map()]}
