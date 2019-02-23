@@ -50,7 +50,7 @@ defmodule ThreadWatcher.Handlers.FileInfo do
     %{post | meta: meta}
   end
 
-  defp image_domain(), do: Application.get_env(:threadpuller, :image_domain, "")
+  defp image_domain(), do: Application.get_env(:thread_watcher, :image_domain, "")
 
   defp thumb_src(%{board: board, id: id}),
     do: cache_url(%{board: board, filename: "#{id}s.jpg"})
