@@ -43,3 +43,6 @@ npm-debug.log
 
 # Elixir language support stuff
 /.elixir_ls
+
+# IDE Stuff
+/.idea
