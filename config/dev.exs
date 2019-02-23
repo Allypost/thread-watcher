@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :thread_watcher,
+  image_domain: "http://localhost:4000/proxy"
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
