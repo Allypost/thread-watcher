@@ -2,14 +2,14 @@ defmodule ThreadWatcher.Handlers.ApiInfo do
   alias ThreadWatcherWeb.Router.Helpers
 
   @spec add_info(atom(), Plug.Conn.t()) :: map()
-  def add_info(:info, conn), do: info(:info, conn)
+  def add_info(:info, conn), do: info(:info, %{}, conn)
 
   @spec add_info([map()], atom(), Plug.Conn.t()) :: [map()]
-  def add_info(data, info_name, conn) do
-    data
-    |> Enum.map(fn datum ->
-      datum
-      |> put_in([:api], info(info_name, datum, conn))
+  def add_info(posts, info_name, conn) do
+    posts
+    |> Enum.map(fn post ->
+      post
+      |> put_in([:api], info(info_name, post, conn))
     end)
   end
 
@@ -25,9 +25,6 @@ defmodule ThreadWatcher.Handlers.ApiInfo do
     |> Map.put(:thread_link, Helpers.api_url(conn, :thread, board, thread))
   end
 
-  defp info(:info, _data, conn), do: info(:info, conn)
-
+  defp info(:info, _data, conn), do: info(:thread, %{board: "%s", thread: "%d"}, conn)
   defp info(_info, _data, _conn), do: %{}
-
-  defp info(:info, conn), do: info(:thread, %{board: "%s", thread: "%d"}, conn)
 end
