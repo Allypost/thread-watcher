@@ -41,7 +41,6 @@ defmodule ThreadWatcher.Handlers.FileInfo do
     meta = %{
       is_video: is_video?(post.extension),
       thumb_src: thumb_src(post),
-      thumb_full_src: thumb_full_src(post),
       thumb_original_src: thumb_original_src(post),
       full_src: full_src(post),
       original_src: full_src(post, true)
@@ -74,7 +73,7 @@ defmodule ThreadWatcher.Handlers.FileInfo do
   defp get_file_type("gif"), do: "image"
   defp get_file_type(_), do: "video"
 
-  defp is_video?(extension), do: if(get_file_type(extension) == "video", do: 1, else: 0)
+  defp is_video?(extension), do: get_file_type(extension) == "video"
 
   defp cache_url(%{board: board, filename: filename}),
     do: "#{image_domain()}/i/#{board}/#{filename}"
