@@ -20,7 +20,7 @@ defmodule ThreadWatcher.Fetchers.Fetcher do
 
   defp headers() do
     %{
-      "User-Agent": "ThreadPuller",
+      "User-Agent": "ThreadWatcher",
       Referer: "https://boards.4chan.org/"
     }
   end
