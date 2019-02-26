@@ -9,7 +9,8 @@ use Mix.Config
 
 config :thread_watcher,
   ecto_repos: [ThreadWatcher.Repo],
-  image_domain: "https://thrdwchr.ga"
+  image_domain: "https://thrdwchr.ga",
+  api_domain: "https://api.thread-watcher.ga"
 
 # Configures the endpoint
 config :thread_watcher, ThreadWatcherWeb.Endpoint,
