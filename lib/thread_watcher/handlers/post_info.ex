@@ -59,10 +59,13 @@ defmodule ThreadWatcher.Handlers.PostInfo do
     do: put_in(post, [:meta, :mentions_list], find_mentions(post))
 
   defp find_replies(post, posts) do
-    mentions_post? = fn p -> String.contains?(p.body.content, "#p#{post.id}") end
+    mentions_post? = fn p ->
+      p.body.content
+      |> String.contains?("#p#{post.id}")
+    end
 
     posts
-    |> Enum.filter(fn p -> mentions_post?.(p) end)
+    |> Enum.filter(mentions_post?)
     |> Enum.map(fn p -> p.id end)
   end
 
@@ -76,7 +79,7 @@ defmodule ThreadWatcher.Handlers.PostInfo do
 
     ~r/#p([0-9]+)/
     |> Regex.scan(post.body.content)
-    |> Enum.map(fn match -> match_to_int.(match) end)
+    |> Enum.map(match_to_int)
   end
 
   defp posted(%{time: time}), do: DateTime.from_unix(time) |> posted_date()
