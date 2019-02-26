@@ -13,12 +13,6 @@ defmodule ThreadWatcherWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ThreadWatcherWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   scope "/proxy", ThreadWatcherWeb do
     get "/i/:board/:file", ProxyController, :image
     get "/thumb/:board/:file", ProxyController, :thumb
@@ -37,6 +31,12 @@ defmodule ThreadWatcherWeb.Router do
     pipe_through :api
 
     get "/", Redirect, to: "/api/v1"
+  end
+
+  scope "/", ThreadWatcherWeb do
+    pipe_through :browser
+
+    get "/", PageController, :index
   end
 end
 
