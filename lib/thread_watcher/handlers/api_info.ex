@@ -15,14 +15,14 @@ defmodule ThreadWatcher.Handlers.ApiInfo do
 
   defp info(:board, %{board: board}, conn) do
     %{
-      boards_link: Helpers.api_url(conn, :boards),
-      board_link: Helpers.api_url(conn, :board, board)
+      boards_link: Helpers.api_url(conn, :boards) |> URI.decode(),
+      board_link: Helpers.api_url(conn, :board, board) |> URI.decode()
     }
   end
 
   defp info(:thread, %{board: board, thread: thread}, conn) do
     info(:board, %{board: board}, conn)
-    |> Map.put(:thread_link, Helpers.api_url(conn, :thread, board, thread))
+    |> Map.put(:thread_link, Helpers.api_url(conn, :thread, board, thread) |> URI.decode())
   end
 
   defp info(:info, _data, conn), do: info(:thread, %{board: "%s", thread: "%d"}, conn)
