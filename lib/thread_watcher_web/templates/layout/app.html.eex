@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ThreadWatcher · Phoenix Framework</title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>" />
-  <script>window.ThreadWatcher={config:{api_url:'<%= Application.get_env(:thread_watcher, :api_domain, "/api") %>'}};</script>
+  <script>window.ThreadWatcher=<%= raw(Jason.encode!(global_js_data(@conn))) %>;</script>
 </head>
 
 <body>
