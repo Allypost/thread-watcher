@@ -15,10 +15,18 @@ const getApiUrl = () => {
   return apiUrl;
 };
 
+const getApiUrls = () => {
+  const config = getConfig();
+  const { api_urls: apiUrls = {} } = config;
+
+  return apiUrls;
+};
+
 Vue.use(Vuex);
 export default new Store({
   state: {
     config: getConfig(),
     api_url: getApiUrl(),
+    api_urls: getApiUrls(),
   },
 });

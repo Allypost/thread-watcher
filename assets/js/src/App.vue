@@ -31,20 +31,6 @@ export default {
     Board,
   },
   asyncComputed: {
-    api_config: {
-      get() {
-        return (
-          fetch(this.api_url)
-            .then(res => res.json())
-        );
-      },
-      default: {},
-    },
-
-    boards_link() {
-      return this.api_config.boards_link;
-    },
-
     boards: {
       get() {
         if (!this.boards_link) {
@@ -64,8 +50,16 @@ export default {
   },
   computed: {
     ...mapState({
-      api_url: state => state.api_url,
+      api_urls: state => state.api_urls,
     }),
+
+    boards_link() {
+      if (!this.api_urls) {
+        return null;
+      }
+
+      return this.api_urls.boards_link;
+    },
   },
 };
 </script>
