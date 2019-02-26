@@ -1,18 +1,18 @@
 <template>
   <div class="hello">
     <h3>Hello from Vue.js!</h3>
-    <p>{{msg}}</p>
+    <p>{{ msg }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "hello",
+  name: 'Hello',
   data() {
     return {
-      msg: "Simple example using Phoenix, Vue and Webpack."
+      msg: 'Simple example using Phoenix, Vue and Webpack.',
     };
-  }
+  },
 };
 </script>
 

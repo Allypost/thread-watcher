@@ -3,7 +3,7 @@ module.exports = {
 		browser: true,
 		es6: true
 	},
-	extends: ['airbnb-base', 'plugin:vue/recommended', '@vue/prettier'],
+	extends: ['airbnb-base', 'plugin:vue/recommended'],
 	globals: {
 		Atomics: 'readonly',
 		SharedArrayBuffer: 'readonly'
