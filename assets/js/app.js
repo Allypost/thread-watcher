@@ -29,4 +29,5 @@ const router = new VueRouter({
 new Vue({
   store,
   router,
+  template: '<router-view />',
 }).$mount('#app');
