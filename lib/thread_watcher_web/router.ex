@@ -36,9 +36,9 @@ defmodule ThreadWatcherWeb.Router do
   scope "/", ThreadWatcherWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    get "/:board", PageController, :board
-    get "/:board/thread/:thread", PageController, :thread
+    get "/", PageController, :boards
+    get "/:board", PageController, :threads
+    get "/:board/thread/:thread", PageController, :posts
   end
 end
 

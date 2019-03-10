@@ -1,15 +1,15 @@
 defmodule ThreadWatcherWeb.PageController do
   use ThreadWatcherWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
+  def boards(conn, _params) do
+    render(conn, "boards.html")
   end
 
-  def board(conn, params) do
-    render(conn, "board.html", board: params["board"])
+  def threads(conn, params) do
+    render(conn, "threads.html", board: params["board"])
   end
 
-  def thread(conn, params) do
-    render(conn, "thread.html", board: params["board"], thread: params["thread"])
+  def posts(conn, params) do
+    render(conn, "posts.html", board: params["board"], thread: params["thread"])
   end
 end
