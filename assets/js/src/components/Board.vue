@@ -1,9 +1,10 @@
 <template>
   <li>
-    <a
-      :href="board_url"
+    <router-link
+      :to="{ name: 'threads', params: { board: board.board } }"
       :data-nsfw="board.nsfw"
-    >{{ board.title }} - {{ board_description }}</a>
+      v-html="board_text"
+    />
   </li>
 </template>
 
@@ -16,16 +17,8 @@ export default {
     },
   },
   computed: {
-    board_url() {
-      const { board } = this.board;
-
-      return `/${board}/`;
-    },
-
-    board_description() {
-      const textarea = document.createElement('textarea');
-      textarea.innerHTML = this.board.description;
-      return textarea.value;
+    board_text() {
+      return `${this.board.title} - ${this.board.description}`;
     },
   },
 };
