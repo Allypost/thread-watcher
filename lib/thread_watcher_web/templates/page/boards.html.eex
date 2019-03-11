@@ -1,1 +1,16 @@
-<div id="app"></div>
+<div id="app">
+    <header>
+        <h1>
+            Thread Watcher
+        </h1>
+    </header>
+    <main>
+        <ul>
+            <%= for board <- @boards do %>
+            <li>
+                <%= link raw("#{board.title} - #{board.description}"), to: Routes.page_path(@conn, :threads, board.board) %>
+            </li>
+            <%= end %>
+        </ul>
+    </main>
+</div>

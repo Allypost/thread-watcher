@@ -3,11 +3,18 @@
     :id="post_id"
     class="post"
   >
+    <div class="title">
+      {{ post.body.title }}
+    </div>
     <div
       v-if="post_text"
-      v-html="post_text"
+      class="content"
+      v-html="post.body.content"
     />
-    <div v-if="post.file">
+    <div
+      v-if="post.file"
+      class="media"
+    >
       <video
         v-if="post.file.meta.is_video"
         :src="post.file.meta.full_src"

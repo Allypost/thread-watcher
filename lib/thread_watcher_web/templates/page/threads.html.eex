@@ -1,1 +1,30 @@
-<div id="app"></div>
+<div id="app">
+    <header>
+        <h1>
+            Thread Watcher
+        </h1>
+    </header>
+    <main>
+        <ul>
+            <%= for thread <- @threads do %>
+            <li>
+                <%
+                    link_text = cond do
+                        thread.body.title != "" ->
+                            thread.body.title
+                        
+                        thread.body.content != "" ->
+                            thread.body.content
+                        
+                        true ->
+                            "No title"
+                    end
+                    |> String.trim()
+                    |> String.slice(0..180)
+                %>
+                <%= link raw(link_text), to: Routes.page_path(@conn, :posts, thread.board, thread.id) %>
+            </li>
+            <%= end %>
+        </ul>
+    </main>
+</div>

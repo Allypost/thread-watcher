@@ -1,1 +1,45 @@
-<div id="app"></div>
+<div id="app" is="Posts">
+    <header>
+        <%
+        first_post = hd(@posts)
+        
+        title = cond do
+            first_post.body.title != "" ->
+                first_post.body.title
+
+            first_post.body.content != "" ->
+                first_post.body.content
+
+            true ->
+                first_post.id
+        end
+        |> String.trim()
+        |> String.slice(0..180)
+        %>
+        <h1>Thread Watcher: <%= first_post.board %>/<%= title %></h1>
+    </header>
+    <main>
+        <%= for post <- @posts do %>
+            <div class="post" id="p<%= post.id %>" is="Post">
+                <%= if post.body.title do %>
+                    <div class="title"><%= raw(post.body.title) %></div>
+                <%= end %>
+                <%= if post.body.content do %>
+                    <div class="content"><%= raw(post.body.content) %></div>
+                <%= end %>
+                <%= if post.file do %>
+                    <div class="media">
+                        <%= if post.file.meta.is_video do %>
+                            <video controls preload="metadata" alt="<%= post.file.filename %>">
+                                <source src="<%= post.file.meta.original_src %>">
+                                <source src="<%= post.file.meta.full_src %>">
+                            </video>
+                        <%= else %>
+                            <img src="<%= post.file.meta.full_src %>" alt="<%= post.file.filename %>">
+                        <%= end %>
+                    </div>
+                <%= end %>
+            </div>
+        <%= end %>
+    </main>
+</div>
